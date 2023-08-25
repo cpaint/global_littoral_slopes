@@ -31,43 +31,45 @@ clip_data = data.loc[notnan,:].copy()
 
 #Global
 fig = px.scatter_mapbox(clip_data, lat="Y", lon="X", hover_name="slope", hover_data=["slope", "dc"],
-                        color='slope',range_color=[0,.1],
+                        color='slope',range_color=[.001,.08],
                           zoom=3, height=400, color_continuous_scale=px.colors.sequential.Viridis)
-fig.update_layout(mapbox=dict(style="carto-positron")) 
+fig.update_layout(mapbox=dict(style="carto-positron"))
+fig.update_mapboxes(layers=[{"circle":{"radius":5}}]) 
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 
 #Taiwan
-is_taiwan = (clip_data.Y <=25) & (clip_data.Y >=21) & (clip_data.X<=122) &(clip_data.X >=120)
+is_taiwan = (clip_data.Y <=26) & (clip_data.Y >=21) & (clip_data.X<=122) &(clip_data.X >=120)
 taiwan_df = clip_data.loc[is_taiwan,:].copy()
 fig = px.scatter_mapbox(taiwan_df, lat="Y", lon="X", hover_name="slope", hover_data=["slope", "dc"],
-                        color='slope',range_color=[.001,.1],
+                        color='slope',range_color=[.001,.04],
                           zoom=3, height=800, color_continuous_scale=px.colors.sequential.Viridis)
 # fig.update_layout(mapbox_style="mapbox-dark") #This one looks the nicest on the comp but not for a paper lit review
 fig.update_layout(mapbox=dict(style="carto-positron")) # grayscale simple )
+fig.update_mapboxes(layers=[{"circle":{"radius":5}}]) 
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 
 #Japan
-is_schwab = (clip_data.Y <= 26.8) & (clip_data.Y >= 25.5) & (clip_data.X <= 128.5) & (clip_data.X >= 128)
+is_schwab = (clip_data.Y <= 27) & (clip_data.Y >= 23) & (clip_data.X <= 128.5) & (clip_data.X >= 126)
 japan_df = clip_data.loc[is_schwab, :].copy()
 fig = px.scatter_mapbox(japan_df, lat="Y", lon="X", hover_name="slope", hover_data=["slope", "dc"],
-                        color='slope',range_color=[.001,.1],
+                        color='slope',range_color=[.001,.04],
                           zoom=3, height=800, color_continuous_scale=px.colors.sequential.Viridis)
 # fig.update_layout(mapbox_style="mapbox-dark")
 fig.update_layout(mapbox=dict(style="carto-positron")) # grayscale simple )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 #South China Sea
-is_scs = (clip_data.Y <= 20.5) & (clip_data.Y >= 8) & (clip_data.X <= 119) & (clip_data.X >= 103.05)
-scs_df = clip_data.loc[is_scs, :].copy()
-fig = px.scatter_mapbox(scs_df, lat="Y", lon="X", hover_name="slope", hover_data=["slope", "dc"],
-                        color='slope',range_color=[.001,.1],
-                          zoom=3, height=800, color_continuous_scale=px.colors.sequential.Viridis)
+# is_scs = (clip_data.Y <= 20.5) & (clip_data.Y >= 8) & (clip_data.X <= 119) & (clip_data.X >= 103.05)
+# scs_df = clip_data.loc[is_scs, :].copy()
+# fig = px.scatter_mapbox(scs_df, lat="Y", lon="X", hover_name="slope", hover_data=["slope", "dc"],
+#                         color='slope',range_color=[.001,.1],
+#                           zoom=3, height=800, color_continuous_scale=px.colors.sequential.Viridis)
 # fig.update_layout(mapbox_style="mapbox-dark")
-fig.update_layout(mapbox=dict(style="carto-positron")) # grayscale simple )
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-fig.show()
+# fig.update_layout(mapbox=dict(style="carto-positron")) # grayscale simple )
+# fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# fig.show()
 
 #California
 is_cali = (clip_data.Y <= 48) & (clip_data.Y >= 31) & (clip_data.X <= -116) & (clip_data.X >= -133)
@@ -84,7 +86,7 @@ fig.show()
 is_east = (clip_data.Y <= 38) & (clip_data.Y >= 33) & (clip_data.X <= -75) & (clip_data.X >= -78)
 east_df = clip_data.loc[is_east, :].copy()
 fig = px.scatter_mapbox(east_df, lat="Y", lon="X", hover_name="slope", hover_data=["slope", "dc"],
-                        color='slope',range_color=[.001,.1],
+                        color='slope',range_color=[.001,.04],
                           zoom=3, height=800, color_continuous_scale=px.colors.sequential.Viridis)
 # fig.update_layout(mapbox_style="mapbox-dark")
 fig.update_layout(mapbox=dict(style="carto-positron")) # grayscale simple )
